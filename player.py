@@ -8,15 +8,21 @@ def create_player(deck):
         hand = []
         for row in range(3):
             current_row = []
-        for column in range(4):
-            current_row.append(deal_card(deck))
-        hand.append(current_row)
+            for column in range(4):
+                current_row.append(deal_card(deck))
+            hand.append(current_row)
 
-    player = {
-        "name": i + 1,
-        "hand": hand,
-        "score" : 0
-    }
-    players.append(player)
+        player = {
+            "name": i + 1,
+            "hand": hand,
+            "score" : 0
+        }
+        players.append(player)
     return players
+
+def reveal_first_cards(player):
+    for i in range(2):
+        row = int(input("Ligne 1 à 3...")) -1
+        column = int(input("Colonne 1 à 3...")) -1
+        player["hand"][row][column]["visible"] = True
 
