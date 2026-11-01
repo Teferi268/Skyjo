@@ -15,7 +15,7 @@ Regle du jeu :
         -Piocher une carte cachée
             ->Tu la regardes, puis tu la gardes pour remplacer une de tes cartes
             ->ou tu la défausses et retournes obligatoirement une de tes cartes cachées.
-        -Si aucune carte n'est cachée, les autres joeurs jouent encore un dernier tour et la partie s'arrete
+        -Si aucune carte n'est cachée, les autres joueurs jouent encore un dernier tour et la partie s'arrete
 
     Regle spécial:
         -Si 3 cartes d'une même colonne sont visible et identique, on retire tout la colonne
