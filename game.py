@@ -1,7 +1,7 @@
 import random
 from deck import deck, take_card
 from player import create_player, reveal_first_cards
-from graphics import show_hand
+from graphics import show_hand, show_discard_pile
 from action import pick_card
 
 def has_hidden_cards(player):
@@ -32,6 +32,7 @@ def create_game(deck):
         print(f"\nTour du joueur {player['name']}")
         pick_card(deck, player, discard_pile)
         show_hand(players)
+        show_discard_pile(discard_pile)
 
         if not has_hidden_cards(player):
              finished_player = current_player

@@ -1,4 +1,5 @@
 import random
+from game import discard_pile
 from deck import deck
 from player import create_player, reveal_first_cards
 def show_hand(players):
@@ -12,4 +13,7 @@ def show_hand(players):
                 else:
                     display_cards.append("?")
             print(" | ".join(display_cards))
-    
+
+def show_discard_pile(discard_pile):
+    top_card = discard_pile[-1]
+    print(f"\nDéfausse : {top_card['value']}")
