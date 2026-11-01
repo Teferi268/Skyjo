@@ -4,6 +4,14 @@ from player import create_player, reveal_first_cards
 from graphics import show_hand
 from action import pick_card
 
+def has_hidden_cards(player):
+    #Permet de verifier si un joueur à des cartes encore cacher
+    for row in player["hand"]:
+        for card in row:
+            if not card["visible"]:
+                return True
+    return False
+
 
 def create_game(deck):
     print("Bienvenue dans le jeu de Skyjo")
@@ -16,9 +24,26 @@ def create_game(deck):
 
     discard_pile = [take_card(deck)]
     discard_pile[0]["visible"] = True
-    
-    print("Tour du joueur 1")
-    pick_card(deck, players[0], discard_pile)
-    
-    show_hand(players)
+    current_player = 0
+    finished_player = None
+    while finished_player is None:
+        player = players[current_player]
+
+        print(f"\nTour du joueur {player['name']}")
+        pick_card(deck, player, discard_pile)
+        show_hand(players)
+
+        if not has_hidden_cards(player):
+             finished_player = current_player
+             print(f"Le joueur {player['name']} n'a plus de cartes cachées.")
+        current_player = (current_player + 1) % len(players)
+    for i in range(len(players) - 1):
+        player = players[current_player]
+
+        print(f"\nDernier tour du joueur {player['name']}")
+        pick_card(deck, player, discard_pile)
+        show_hand(players)
+
+        current_player = (current_player + 1) % len(players)
+    print("\nLa manche est terminée")
 
