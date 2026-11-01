@@ -5,3 +5,9 @@ def create_deck():
 
 deck = create_deck()
 random.shuffle(deck)
+
+def deal_card(deck):
+    value = deck.pop() #prend la derniere valeur du deck et l'enleve
+    return {"value" : value,
+            "visible" : False}
+
