@@ -1,4 +1,4 @@
-from deck import take_card
+from deck import take_card, take_discard_card
 
 
 def choose_position(player, message):
@@ -32,7 +32,7 @@ def pick_discard(player, discard_pile):
     """Prend la carte visible de la défausse et la joue."""
     if not discard_pile:
         raise ValueError("La défausse est vide.")
-    card = take_card(discard_pile)
+    card = take_discard_card(discard_pile)
     row, column = choose_position(player, "Position à remplacer")
     replace_card(player, card, discard_pile, row, column)
 

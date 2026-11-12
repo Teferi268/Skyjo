@@ -16,6 +16,14 @@ def take_card(deck):
     return {"value": deck.pop(), "visible": False}
 
 
+def take_discard_card(discard_pile):
+    """Retire et retourne la carte déjà créée au sommet de la défausse."""
+    if not discard_pile:
+        raise ValueError("La défausse est vide.")
+
+    return discard_pile.pop()
+
+
 def create_discard_pile(deck):
     """Crée une défausse avec une carte visible."""
     card = take_card(deck)
