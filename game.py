@@ -1,7 +1,13 @@
 from action import choose_position, pick_deck, pick_discard
 from deck import create_deck, create_discard_pile
 from graphics import show_discard_pile, show_hand
-from player import calculate_score, create_players, has_hidden_cards, reveal_first_cards
+from player import (
+    calculate_score,
+    create_players,
+    has_hidden_cards,
+    remove_identical_columns,
+    reveal_first_cards,
+)
 
 
 def choose_action():
@@ -22,6 +28,9 @@ def play_turn(player, deck, discard_pile):
         pick_discard(player, discard_pile)
     else:
         pick_deck(deck, player, discard_pile)
+    removed_columns = remove_identical_columns(player)
+    if removed_columns:
+        print(f"Colonne(s) supprimée(s) : {', '.join(map(str, removed_columns))}")
 
 
 def show_scores(players):
@@ -61,6 +70,9 @@ def run_game():
         player = players[current_player]
         print(f"\nDernier tour du joueur {player['name']}")
         pick_deck(deck, player, discard_pile)
+        removed_columns = remove_identical_columns(player)
+        if removed_columns:
+            print(f"Colonne(s) supprimée(s) : {', '.join(map(str, removed_columns))}")
         current_player = (current_player + 1) % len(players)
 
     show_scores(players)

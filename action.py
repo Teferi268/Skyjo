@@ -7,7 +7,11 @@ def choose_position(player, message):
         try:
             row = int(input(f"{message} - ligne (1 à 3) : ")) - 1
             column = int(input("Colonne (1 à 4) : ")) - 1
-            if 0 <= row < 3 and 0 <= column < 4:
+            if (
+                0 <= row < 3
+                and 0 <= column < 4
+                and player["hand"][row][column] is not None
+            ):
                 return row, column
         except ValueError:
             pass
@@ -19,8 +23,9 @@ def replace_card(player, card, discard_pile, row, column):
     old_card = player["hand"][row][column]
     card["visible"] = True
     player["hand"][row][column] = card
-    old_card["visible"] = True
-    discard_pile.append(old_card)
+    if old_card is not None:
+        old_card["visible"] = True
+        discard_pile.append(old_card)
 
 
 def pick_discard(player, discard_pile):

@@ -44,7 +44,7 @@ def reveal_first_cards(player, choose_position):
 def has_hidden_cards(player):
     """Indique si la main contient encore une carte cachée."""
     return any(
-        not card["visible"]
+        card is not None and not card["visible"]
         for row in player["hand"]
         for card in row
     )
@@ -56,4 +56,20 @@ def calculate_score(player):
         card["value"]
         for row in player["hand"]
         for card in row
+        if card is not None
     )
+
+
+def remove_identical_columns(player):
+    """Supprime les colonnes dont les trois cartes visibles ont la même valeur."""
+    removed_columns = []
+    for column in range(COLUMNS):
+        cards = [player["hand"][row][column] for row in range(ROWS)]
+        if (
+            all(card is not None and card["visible"] for card in cards)
+            and len({card["value"] for card in cards}) == 1
+        ):
+            for row in range(ROWS):
+                player["hand"][row][column] = None
+            removed_columns.append(column + 1)
+    return removed_columns

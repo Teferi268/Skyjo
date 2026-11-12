@@ -4,7 +4,9 @@ def show_hand(players):
         for row in player["hand"]:
             display_cards = []
             for card in row:
-                if card["visible"]:
+                if card is None:
+                    display_cards.append("X")
+                elif card["visible"]:
                     display_cards.append(str(card["value"]))
                 else:
                     display_cards.append("?")
