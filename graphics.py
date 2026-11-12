@@ -1,7 +1,3 @@
-import random
-from game import discard_pile
-from deck import deck
-from player import create_player, reveal_first_cards
 def show_hand(players):
     for player in players:
         print(f"\nMain du joueur {player['name']} :")

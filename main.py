@@ -1,4 +1,6 @@
-from deck import deck
-from game import create_game
+from game import run_game
 
-create_game(deck)
+
+if __name__ == "__main__":
+    print("Bienvenue dans le jeu de Skyjo")
+    run_game()
